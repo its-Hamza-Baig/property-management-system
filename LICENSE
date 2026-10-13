@@ -1,0 +1,58 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Copyright (c) 2026 Hamza Baig. All rights reserved.
+
+This software, including its source code, database schema, documentation and
+all related materials (together, "the Software"), is the exclusive property of
+the copyright holder and is protected by copyright law and international
+treaties.
+
+NO LICENSE IS GRANTED
+
+No permission is granted to any person or organisation to use, copy, modify,
+merge, publish, distribute, sublicense, sell, host, or create derivative works
+from the Software, in whole or in part, without the prior written permission of
+the copyright holder.
+
+The Software is published in a public repository for reference, review and
+portfolio purposes only. Public visibility does not grant any licence, implied
+or otherwise, and does not place the Software in the public domain.
+
+PERMITTED WITHOUT PERMISSION
+
+You may view and read the source code, and you may quote short excerpts for the
+purpose of commentary, review, teaching or security research, provided the
+source is attributed.
+
+EXPLICITLY NOT PERMITTED
+
+  - Running the Software, in whole or in substantial part, to operate a
+    business or to provide a service to third parties.
+  - Redistributing the Software or any substantial part of it.
+  - Removing or altering this notice or any copyright notice.
+  - Using the Software to train machine learning models for code generation
+    where the output may reproduce substantial parts of it.
+
+THIRD-PARTY COMPONENTS
+
+The Software depends on third-party open-source packages, each governed by its
+own licence. Those licences apply to those packages only and grant no rights
+over the Software itself. See composer.json and composer.lock for the full
+list.
+
+NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+This software performs financial calculations. The copyright holder accepts no
+responsibility for financial decisions, losses or regulatory consequences
+arising from its use. Verify all figures independently.
+
+LICENSING ENQUIRIES
+
+For permission to use this Software, contact the copyright holder.

@@ -1,0 +1,66 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # The suite runs against real MySQL, not SQLite, because the money columns
+    # are DECIMAL and the financial tests are only meaningful on the engine the
+    # application actually ships on.
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: pms_testing
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql, xml, curl, fileinfo, gd
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/composer/files
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare the environment
+        run: |
+          cp .env.example .env
+          cp .env.testing.example .env.testing
+          # Point the test environment at the MySQL service container.
+          sed -i 's/^DB_HOST=.*/DB_HOST=127.0.0.1/'      .env.testing
+          sed -i 's/^DB_PORT=.*/DB_PORT=3306/'           .env.testing
+          sed -i 's/^DB_USERNAME=.*/DB_USERNAME=root/'   .env.testing
+          sed -i 's/^DB_PASSWORD=.*/DB_PASSWORD=root/'   .env.testing
+          php artisan key:generate
+          php artisan key:generate --env=testing
+
+      - name: Check the code parses
+        run: find app database routes tests config -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+
+      - name: Run the test suite
+        run: php artisan test
